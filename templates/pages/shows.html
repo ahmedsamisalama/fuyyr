@@ -1,0 +1,26 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Fyyur | Shows{% endblock %}
+{% block content %}
+<div class="row shows">
+    {%for show in shows %}
+    <div class="col-sm-4">
+        <div class="tile tile-show">
+            <img src="{{ show.venue.image_link }}" alt="Show Image" />
+            
+            <!-- {% if show.artist %} -->
+                {% if show.start_time %}
+                    <h4>{{ show.start_time|datetime('full') }}</h4>
+                {% endif %}
+
+                <h5><a href="/artists/{{ show.artist.name }}">{{ show.artist.name }}</a></h5>
+            <!-- {% endif %} -->
+
+            <!-- {% if show.venue %} -->
+                <p>playing at</p>
+                <h5><a href="/venues/{{ show.venue.id }}">{{ show.venue.name }}</a></h5>
+            <!-- {% endif %} -->
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
